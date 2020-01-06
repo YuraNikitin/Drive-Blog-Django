@@ -1,0 +1,29 @@
+{% extends 'driveblog/base_blog.html' %}
+
+{% block title %}
+    Post lists
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-5"> Posts:</h1>
+{% for post in posts %}
+<div class="card mb-4" style="width: 18rem;">
+    {% load static %}
+    <img src="{% static  'images/'|add:post.image %}"  class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">
+            {{ post.body| truncatewords:10 }}
+            <p>
+                {{ post.date_pub }}
+            </p>
+        </p>
+        <a href="{{ post.get_absolute_url }}" class="btn btn-primary"> Read! </a>
+    </div>
+</div>
+
+
+
+{% endfor %}
+{% endblock %}
+

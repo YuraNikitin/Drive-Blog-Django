@@ -1,0 +1,20 @@
+{% extends 'driveblog/base_blog.html' %}
+
+{% block title %}
+    {{ post.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h1 class="mt-5">
+    {{ post.title }}
+</h1>
+<div class="card" style="width: 18rem;">
+    {% load static %}
+    <img src="{% static  'images/'|add:post.image %}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <p class="card-text">
+            {{ post.body }}
+        </p>
+    </div>
+</div>
+{% endblock %}

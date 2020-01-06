@@ -1,0 +1,20 @@
+# Ignore directory
+venv/
+
+#Ignore file database
+**/*.sqlite3
+
+#Ignore jpeg.files
+*.jpeg
+
+#Ignore specfiles
+.idea/
+
+#Ignore specfiles
+**/__pycache__/
+
+**/*.pyc
+
+**/static/
+
+**/migrations/
