@@ -1,13 +1,14 @@
 {% extends 'driveblog/base_blog.html' %}
 
 {% block title %}
-    Post lists
+    {{ tag.title }} - {{ block.super }}
 {% endblock %}
 
 {% block content %}
-    <h1 class="mb-5"> Posts:</h1>
-    {% for post in posts %}
+    <h1 class="mt-5">
+        Posts with "{{ tag.title|title }}" tag:
+    </h1>
+    {% for post in tag.posts.all %}
         {% include 'driveblog/includes/post_card_template.html' %}
     {% endfor %}
 {% endblock %}
-

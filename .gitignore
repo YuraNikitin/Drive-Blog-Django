@@ -4,8 +4,8 @@ venv/
 #Ignore file database
 **/*.sqlite3
 
-#Ignore jpeg.files
-*.jpeg
+#Ignore jpg.files
+*.jpg
 
 #Ignore specfiles
 .idea/
@@ -18,3 +18,5 @@ venv/
 **/static/
 
 **/migrations/
+
+**/media/
