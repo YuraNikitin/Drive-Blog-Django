@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
 from .forms import TagForm, PostForm
 from .models import Post, Tag
 from django.views.generic import View
-from .utils import ObjectDetailMixin, ObjectCreateMixin
+from .utils import *
 
 
 # Create your views here.
@@ -31,7 +30,18 @@ class TagCreate(ObjectCreateMixin, View):
     template = 'driveblog/tag_create.html'
 
 
+class TagUpdate(ObjectUpdateMixin, View):
+    model = Tag
+    model_form = TagForm
+    template = 'driveblog/tag_update.html'
+
+
 class PostCreate(ObjectCreateMixin, View):
     form_model = PostForm
     template = 'driveblog/post_create_form.html'
 
+
+class PostUpdate(ObjectUpdateMixin, View):
+    model = Post
+    model_form = PostForm
+    template = 'driveblog/post_update.html'
