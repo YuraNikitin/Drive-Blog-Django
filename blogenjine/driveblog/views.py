@@ -2,6 +2,7 @@ from .forms import TagForm, PostForm
 from .models import Post, Tag
 from django.views.generic import View
 from .utils import *
+from django.urls import reverse
 
 
 # Create your views here.
@@ -36,6 +37,12 @@ class TagUpdate(ObjectUpdateMixin, View):
     template = 'driveblog/tag_update.html'
 
 
+class TagDelete(ObjectDeleteMixin, View):
+    model = Tag
+    template = 'driveblog/tag_delete.html'
+    redirect_url = 'tags_list_url'
+
+
 class PostCreate(ObjectCreateMixin, View):
     form_model = PostForm
     template = 'driveblog/post_create_form.html'
@@ -45,3 +52,9 @@ class PostUpdate(ObjectUpdateMixin, View):
     model = Post
     model_form = PostForm
     template = 'driveblog/post_update.html'
+
+
+class PostDelete(ObjectDeleteMixin, View):
+    model = Post
+    template = 'driveblog/post_delete.html'
+    redirect_url = 'posts_list_url'
