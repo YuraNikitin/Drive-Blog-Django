@@ -22,5 +22,6 @@ from .views import redirect_blog
 urlpatterns = [
     path('',redirect_blog),
     path('admin/', admin.site.urls),
-    path ('blog/', include('driveblog.urls'))
+    path('blog/', include('driveblog.urls')),
+   # path('accounts/', include('driveblog.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
-
+from . import views
 urlpatterns = [
     path('', posts_list, name='posts_list_url'),
     path('post/create/', PostCreate.as_view(), name='post_create_url'),
@@ -15,4 +15,7 @@ urlpatterns = [
     path('tag/<str:slug>/', TagDetail.as_view(), name='tag_detail_url'),
     path('tag/<str:slug>/update/', TagUpdate.as_view(), name='tag_update_url'),
     path('tag/<str:slug>/delete/', TagDelete.as_view(), name='tag_delete_url'),
+
+    path('login/', Login.as_view(), name='login'),
+    path('logout/', views.logout_view, name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

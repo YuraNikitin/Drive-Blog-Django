@@ -35,6 +35,7 @@ class PostForm(forms.ModelForm):
             'image': forms.FileInput(),
             'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
 
+
         }
 
         def clean_slug(self):
@@ -44,3 +45,7 @@ class PostForm(forms.ModelForm):
                 raise ValidationError('Slug may not be "Create"')
             return new_slug
 
+
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))

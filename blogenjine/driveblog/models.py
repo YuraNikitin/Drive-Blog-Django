@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.utils.text import slugify
 from time import time
+from django.contrib.auth.models import User
 
 
 def gen_slug(s):
@@ -17,6 +18,7 @@ class Post(models.Model):
     image = models.FileField(upload_to='', blank=True)
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
     date_pub = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('post_detail_url', kwargs={'slug': self.slug})
@@ -30,6 +32,7 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = gen_slug(self.title)
+
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -42,6 +45,7 @@ class Post(models.Model):
 class Tag(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
+    author = models.ForeignKey(User, related_name='tags', on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('tag_detail_url', kwargs={'slug': self.slug})
