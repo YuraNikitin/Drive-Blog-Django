@@ -6,6 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
+
+
 # Create your views here.
 
 
@@ -119,3 +121,18 @@ class Login(View):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+class RegisterNewUser(View):
+    def get(self, request):
+        form = UserRegistrationForm()
+        return render(request, 'driveblog/register.html', context={'form': form})
+
+    def post(self, request):
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password'])
+            new_user.save()
+            return redirect('login')
+        return render(request, 'driveblog/register.html', context={'form': form})
