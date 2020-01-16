@@ -7,18 +7,7 @@
 {% block content %}
 <h1 class="mb-5"> Registration :</h1>
     <form  action="{% url 'register_user_url'  %}" method="post" >
-        {% csrf_token %}
-        {% for field in form %}
-        <div class="form-group ">
-            {% if field.errors %}
-                <div class="alert alert-danger">
-                    {{ field.errors }}
-                </div>
-            {% endif %}
-            {{ field.label }}
-            {{ field }}
-        </div>
-        {% endfor %}
+        {% include 'driveblog/includes/form_create_template.html' %}
         <button type="submit" class="btn btn-primary" >Enter</button>
         <a href="{% url 'login' %}" class="btn btn-light" > Back</a>
     </form>

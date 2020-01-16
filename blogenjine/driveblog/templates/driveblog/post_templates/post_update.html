@@ -1,0 +1,12 @@
+{% extends 'driveblog/base_blog.html' %}
+
+{% block title %}
+    Post Edit "{{ post.title }}"
+{% endblock %}
+
+{% block content %}
+    <form action="{{ post.get_update_url }}" method="post" enctype="multipart/form-data">
+        {% include 'driveblog/includes/form_create_template.html' %}
+        <button type="submit" class="btn btn-primary">Update post</button>
+    </form>
+{% endblock %}

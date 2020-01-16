@@ -1,8 +1,12 @@
-from django.urls import path, include
-from .views import *
+from django.urls import path
+
+from .view.post import *
+from .view.tag import *
+from .view.user import *
+
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
+
 urlpatterns = [
     path('', PostsListUsers.as_view(), name='posts_list_url'),
     path('post/create/', PostCreate.as_view(), name='post_create_url'),
@@ -18,6 +22,6 @@ urlpatterns = [
     path('tag/<str:slug>/delete/', TagDelete.as_view(), name='tag_delete_url'),
 
     path('login/', Login.as_view(), name='login'),
-    path('logout/', views.logout_view, name='logout'),
+    path('logout/', logout_view, name='logout'),
     path('register/', RegisterNewUser.as_view(), name='register_user_url'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,12 @@
+{% extends 'driveblog/base_blog.html' %}
+
+{% block title %}
+    Post Create - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'post_create_url' %}" method="post" enctype="multipart/form-data">
+        {% include 'driveblog/includes/form_create_template.html' %}
+        <button type="submit" class="btn btn-primary">Create post</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'driveblog/base_blog.html' %}
+
+{% block title %}
+    Tag Create - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'tag_create_url'  %}" method="post">
+        {% include 'driveblog/includes/form_create_template.html' %}
+        <button type="submit" class="btn btn-primary">Create tag</button>
+    </form>
+{% endblock %}
