@@ -1,18 +1,19 @@
-from ..model.post import Post
-from ..form.post import PostForm
-from django.views.generic import View
-from ..utils import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import View
 
-
-class PostsListUsers(ObjectListMixin, View):
-    model = Post
-    obj_query = 'user posts'
+from ..form.post import PostForm
+from ..model.post import Post
+from ..utils import *
 
 
 class PostsList(ObjectListMixin, View):
     model = Post
-    obj_query = 'other posts'
+    obj_query = None
+
+
+class PostsListUsers(ObjectListMixin, View):
+    model = Post
+    obj_query = {'author': ''}
 
 
 class PostDetail(ObjectDetailMixin, View):
@@ -23,7 +24,6 @@ class PostDetail(ObjectDetailMixin, View):
 class PostCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     form_model = PostForm
     template = 'driveblog/post_templates/post_create_form.html'
-
     raise_exception = True
 
 

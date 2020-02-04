@@ -1,17 +1,19 @@
+from time import time
+
+from django.contrib.auth.models import User
 from django.db import models
 from django.shortcuts import reverse
 from django.utils.text import slugify
-from time import time
-from django.contrib.auth.models import User
 
 
 def gen_slug(s):
+    """This is method generation slug"""
     new_slug = slugify(s, allow_unicode=True)
     return new_slug + '-' + str(int(time()))
 
 
-# Create your models here.
 class Post(models.Model):
+    """ This model Post, contains following fields:"""
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
     body = models.TextField(blank=True, db_index=True)

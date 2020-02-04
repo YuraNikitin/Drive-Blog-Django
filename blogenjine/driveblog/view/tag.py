@@ -1,8 +1,9 @@
-from ..model.tag import Tag
-from ..form.tag import TagForm
-from django.views.generic import View
-from ..utils import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import View
+
+from ..form.tag import TagForm
+from ..model.tag import Tag
+from ..utils import *
 
 
 def tags_list(request):

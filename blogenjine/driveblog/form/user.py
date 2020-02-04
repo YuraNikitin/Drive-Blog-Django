@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    second_password = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -19,9 +19,11 @@ class UserRegistrationForm(forms.ModelForm):
 
         def clean_password2(self):
             cleaned_data = self.cleaned_date
-            if cleaned_data['password'] != cleaned_data['password2']:
+
+            if cleaned_data['password'] != cleaned_data['second_password']:
                 raise forms.ValidationError("Passwords don't match! Please try again.")
-            return cleaned_data['password2']
+
+            return cleaned_data['second_password']
 
 
 class LoginForm(forms.Form):

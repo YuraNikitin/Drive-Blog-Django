@@ -1,6 +1,7 @@
 from django import forms
-from ..model.tag import Tag
 from django.core.exceptions import ValidationError
+
+from ..model.tag import Tag
 
 
 class TagForm(forms.ModelForm):
@@ -18,6 +19,8 @@ class TagForm(forms.ModelForm):
 
         if new_slug == 'create':
             raise ValidationError('Slug may not be "Create"')
+
         if Tag.objects.filter(slug__iexact=new_slug).count():
             raise ValidationError("Slug must be unique. We have '{}' slug already".format(new_slug))
+
         return new_slug
